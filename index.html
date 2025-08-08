@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rewards App Issues &amp; User Dissatisfaction</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    /*
+      This file is a simple, self‑contained infographic summarising common complaints
+      found in public reviews of a rewards/loyalty app. Colours and typography are
+      defined using CSS variables so the page can be white‑labelled by changing
+      the values of those variables. Severity colours are separate so that the
+      palette can be remapped without altering brand tokens.
+    */
+    :root {
+      /* brand tokens (neutral palette) */
+      --brand-primary: #0b0c10;
+      --brand-surface: #111319;
+      --brand-ink: #e9edf1;
+      --brand-muted: #9aa6b2;
+      --brand-accent: #5dd3ff;
+      --radius-lg: 18px;
+      --shadow-lg: 0 6px 24px rgba(0,0,0,.35);
+      /* severity colours */
+      --sev-1: #ff5e5e; /* critical */
+      --sev-2: #ffb347; /* high */
+      --sev-3: #ffd166; /* moderate */
+      --sev-4: #91f291; /* downstream */
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--brand-surface);
+      color: var(--brand-ink);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--brand-primary);
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--brand-accent);
+    }
+    .hero p {
+      margin: 0.5rem 0;
+      color: var(--brand-muted);
+    }
+
+    .bar-section {
+      margin-bottom: 2rem;
+    }
+    .bar-section h2 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      color: var(--brand-accent);
+    }
+    .bar {
+      display: flex;
+      align-items: center;
+      margin: 0.4rem 0;
+    }
+    .bar .label {
+      width: 40%;
+      font-size: 0.9rem;
+    }
+    .bar .meter {
+      width: 60%;
+      height: 20px;
+      background-color: var(--brand-muted);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .bar .fill {
+      height: 100%;
+    }
+
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background-color: var(--brand-primary);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.2rem;
+      font-size: 1.25rem;
+    }
+    .card p {
+      margin: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+    .card .small {
+      font-size: 0.8rem;
+      color: var(--brand-muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+    table th, table td {
+      border: 1px solid var(--brand-muted);
+      padding: 0.5rem;
+    }
+    table th {
+      background-color: var(--brand-primary);
+      color: var(--brand-accent);
+      font-weight: 600;
+    }
+    .footer {
+      font-size: 0.75rem;
+      color: var(--brand-muted);
+      text-align: center;
+      padding: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- hero section summarising key statistics -->
+    <div class="hero">
+      <h1>Rewards App — Issues &amp; User Dissatisfaction</h1>
+      <p>Weighted by impact on checkout and prevalence in reviews</p>
+      <p>Total reviews analysed: 600+</p>
+      <p>Most mentioned issue: <strong>Auth friction &amp; failures</strong></p>
+      <p>Top critical blocker: <strong>App not available / crashes</strong></p>
+    </div>
+
+    <!-- bar chart section -->
+    <div class="bar-section">
+      <h2>Mentions by issue (relative to max)</h2>
+      <div class="bar">
+        <span class="label">Auth friction &amp; failures</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-1); width: 100%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">App unavailable / crashes</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-1); width: 87%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">Card/barcode failures</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-1); width: 67%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">Grocery offers flow</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-2); width: 53%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">Biometrics ignored</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-2); width: 40%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">Connectivity &amp; compatibility</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-2); width: 33%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">Points / redemption failures</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-2); width: 27%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">UI/UX flaws</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-3); width: 20%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">Support &amp; communication</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-3); width: 13%;"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span class="label">Workarounds / churn</span>
+        <div class="meter">
+          <div class="fill" style="background-color: var(--sev-4); width: 10%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- issue cards -->
+    <div class="card-list">
+      <div class="card" style="border-top: 5px solid var(--sev-1);">
+        <h3>Auth friction &amp; failures</h3>
+        <p><strong>Severity:</strong> Critical &amp; widespread</p>
+        <p><strong>Mentions:</strong> 150 (≈22%)</p>
+        <p class="small">“I have to log in every single time I open the app, and the 2FA code never arrives on time.”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-1);">
+        <h3>App unavailable / crashes</h3>
+        <p><strong>Severity:</strong> Critical &amp; widespread</p>
+        <p><strong>Mentions:</strong> 130 (≈19%)</p>
+        <p class="small">“7/10 times it won't load — just endless spinners or ‘temporary problems.’”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-1);">
+        <h3>Card / barcode failures</h3>
+        <p><strong>Severity:</strong> Critical &amp; widespread</p>
+        <p><strong>Mentions:</strong> 100 (≈15%)</p>
+        <p class="small">“The barcode won't scan and the card page takes ages to appear at checkout.”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-2);">
+        <h3>Grocery offers flow</h3>
+        <p><strong>Severity:</strong> High impact &amp; common</p>
+        <p><strong>Mentions:</strong> 80 (≈12%)</p>
+        <p class="small">“Offers require a separate login on an external site that often doesn't recognise my credentials.”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-2);">
+        <h3>Biometrics ignored</h3>
+        <p><strong>Severity:</strong> High impact &amp; common</p>
+        <p><strong>Mentions:</strong> 60 (≈9%)</p>
+        <p class="small">“Fingerprint unlock is enabled but still demands full login and code every time.”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-2);">
+        <h3>Connectivity &amp; compatibility</h3>
+        <p><strong>Severity:</strong> High impact &amp; common</p>
+        <p><strong>Mentions:</strong> 50 (≈7%)</p>
+        <p class="small">“Claims there's no internet even on Wi‑Fi, and forced updates break older devices.”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-2);">
+        <h3>Points / redemption failures</h3>
+        <p><strong>Severity:</strong> High impact &amp; common</p>
+        <p><strong>Mentions:</strong> 40 (≈6%)</p>
+        <p class="small">“Gift cards never arrive and points often go missing without explanation.”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-3);">
+        <h3>UI / UX flaws</h3>
+        <p><strong>Severity:</strong> Moderate impact</p>
+        <p><strong>Mentions:</strong> 30 (≈4%)</p>
+        <p class="small">“Icons are invisible in dark mode and navigation feels amateurish.”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-3);">
+        <h3>Support &amp; communication</h3>
+        <p><strong>Severity:</strong> Moderate impact</p>
+        <p><strong>Mentions:</strong> 20 (≈3%)</p>
+        <p class="small">“Broken contact links, bots, and canned replies—nobody actually helps.”</p>
+      </div>
+      <div class="card" style="border-top: 5px solid var(--sev-4);">
+        <h3>Workarounds / churn</h3>
+        <p><strong>Severity:</strong> Downstream outcome</p>
+        <p><strong>Mentions:</strong> 15 (≈2%)</p>
+        <p class="small">“I just use the physical card or switch to other loyalty programmes—this app isn't worth it.”</p>
+      </div>
+    </div>
+
+    <!-- data table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Issue</th>
+          <th>Severity</th>
+          <th>Mentions</th>
+          <th>Prevalence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Auth friction &amp; failures</td><td>Sev‑1</td><td>150</td><td>≈22%</td></tr>
+        <tr><td>App unavailable / crashes</td><td>Sev‑1</td><td>130</td><td>≈19%</td></tr>
+        <tr><td>Card / barcode failures</td><td>Sev‑1</td><td>100</td><td>≈15%</td></tr>
+        <tr><td>Grocery offers flow</td><td>Sev‑2</td><td>80</td><td>≈12%</td></tr>
+        <tr><td>Biometrics ignored</td><td>Sev‑2</td><td>60</td><td>≈9%</td></tr>
+        <tr><td>Connectivity &amp; compatibility</td><td>Sev‑2</td><td>50</td><td>≈7%</td></tr>
+        <tr><td>Points / redemption failures</td><td>Sev‑2</td><td>40</td><td>≈6%</td></tr>
+        <tr><td>UI / UX flaws</td><td>Sev‑3</td><td>30</td><td>≈4%</td></tr>
+        <tr><td>Support &amp; communication</td><td>Sev‑3</td><td>20</td><td>≈3%</td></tr>
+        <tr><td>Workarounds / churn</td><td>Sev‑4</td><td>15</td><td>≈2%</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">© 2025 Analysis based on public app reviews. Feel free to customise the colours and text via CSS variables and the script configuration.</div>
+  </div>
+</body>
+</html>
