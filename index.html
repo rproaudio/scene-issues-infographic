@@ -1,177 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Rewards App Issues &amp; User Dissatisfaction</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scene+ App — Issues & User Dissatisfaction (Infographic)</title>
   <style>
-    /*
-      This file is a simple, self‑contained infographic summarising common complaints
-      found in public reviews of a rewards/loyalty app. Colours and typography are
-      defined using CSS variables so the page can be white‑labelled by changing
-      the values of those variables. Severity colours are separate so that the
-      palette can be remapped without altering brand tokens.
-    */
-    :root {
-      /* brand tokens (neutral palette) */
-      --brand-primary: #0b0c10;
-      --brand-surface: #111319;
-      --brand-ink: #e9edf1;
-      --brand-muted: #9aa6b2;
-      --brand-accent: #5dd3ff;
-      --radius-lg: 18px;
-      --shadow-lg: 0 6px 24px rgba(0,0,0,.35);
-      /* severity colours */
-      --sev-1: #ff5e5e; /* critical */
-      --sev-2: #ffb347; /* high */
-      --sev-3: #ffd166; /* moderate */
-      --sev-4: #91f291; /* downstream */
+    :root{
+      --bg:#0b0c10; /* dark slate */
+      --panel:#111319; /* card */
+      --ink:#e9edf1; /* text */
+      --muted:#9aa6b2;
+      --brand:#5dd3ff; /* accent */
+      --brand-2:#7af4c2; /* secondary */
+      --sev1:#ff5e5e;
+      --sev2:#ffb347;
+      --sev3:#ffd166;
+      --sev4:#91f291;
+      --ok:#7af4c2;
+      --border:rgba(255,255,255,.08);
+      --shadow:0 6px 24px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius-sm:12px;
+      --radius-xs:10px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,#0b0c10 0%,#0b0c10 50%,#0e1117 100%);color:var(--ink);font-family:var(--sans);}
+    .wrap{max-width:1100px;margin:40px auto;padding:0 20px 64px}
+    .hero{display:grid;grid-template-columns:1.3fr .9fr;gap:24px;align-items:stretch;margin-bottom:24px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .pad{padding:22px}
+    h1{font-size:28px;margin:0 0 8px}
+    .sub{color:var(--muted);font-size:14px;margin:8px 0 0}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .kpi{background:#0c0f15;border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+    .kpi h3{font-size:13px;color:var(--muted);margin:0 0 6px}
+    .kpi p{font-size:22px;margin:0}
+    .legend{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#0c0f15;color:var(--ink);font-size:13px;cursor:pointer}
+    .chip[data-active="true"]{outline:2px solid var(--brand);}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .sev1{background:var(--sev1)}
+    .sev2{background:var(--sev2)}
+    .sev3{background:var(--sev3)}
+    .sev4{background:var(--sev4)}
+    .tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    select,button{background:#0c0f15;color:var(--ink);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-family:var(--sans)}
+    button:hover,select:hover{border-color:#2a3340}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+
+    .barcard{padding:16px}
+    .bar{height:12px;border-radius:10px;background:linear-gradient(90deg,var(--brand),var(--brand-2));}
+    .barwrap{background:#0c0f15;border:1px solid var(--border);border-radius:999px;padding:4px}
+    .barrow{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin:10px 0}
+    .label{font-size:13px;color:var(--ink)}
+    .meta{font-size:12px;color:var(--muted)}
+
+    .issue{display:grid;grid-template-columns:1fr auto;gap:14px;border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;background:#0c0f15}
+    .issue + .issue{margin-top:10px}
+    .issue h4{margin:0 0 4px;font-size:16px}
+    .badge{font-size:12px;padding:6px 8px;border-radius:999px;border:1px solid var(--border);}
+    .badge.sev-1{background:rgba(255,94,94,.15);border-color:rgba(255,94,94,.3)}
+    .badge.sev-2{background:rgba(255,179,71,.15);border-color:rgba(255,179,71,.3)}
+    .badge.sev-3{background:rgba(255,209,102,.15);border-color:rgba(255,209,102,.3)}
+    .badge.sev-4{background:rgba(145,242,145,.15);border-color:rgba(145,242,145,.3)}
+    .example{color:#c3cad3;font-size:12px;margin-top:6px;opacity:.85}
+
+    .table{margin-top:14px;border-collapse:collapse;width:100%;font-size:13px}
+    .table th,.table td{border-bottom:1px solid var(--border);padding:10px 8px;text-align:left}
+    .table th{color:var(--muted);font-weight:600}
+
+    .foot{margin-top:22px;color:var(--muted);font-size:12px}
+    .hl{color:var(--brand)}
+    .sticky{position:sticky;top:12px}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
     }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: var(--brand-surface);
-      color: var(--brand-ink);
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 2rem;
-      background-color: var(--brand-primary);
-      border-radius: var(--radius-lg);
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-lg);
-    }
-    .hero h1 {
-      margin: 0;
-      font-size: 2rem;
-      color: var(--brand-accent);
-    }
-    .hero p {
-      margin: 0.5rem 0;
-      color: var(--brand-muted);
-    }
-
-    .bar-section {
-      margin-bottom: 2rem;
-    }
-    .bar-section h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1.5rem;
-      color: var(--brand-accent);
-    }
-    .bar {
-      display: flex;
-      align-items: center;
-      margin: 0.4rem 0;
-    }
-    .bar .label {
-      width: 40%;
-      font-size: 0.9rem;
-    }
-    .bar .meter {
-      width: 60%;
-      height: 20px;
-      background-color: var(--brand-muted);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .bar .fill {
-      height: 100%;
-    }
-
-    .card-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .card {
-      background-color: var(--brand-primary);
-      border-radius: var(--radius-lg);
-      padding: 1rem;
-      box-shadow: var(--shadow-lg);
-    }
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 0.2rem;
-      font-size: 1.25rem;
-    }
-    .card p {
-      margin: 0.3rem 0;
-      font-size: 0.9rem;
-    }
-    .card .small {
-      font-size: 0.8rem;
-      color: var(--brand-muted);
-    }
-
-    /*
-      Filter bar and buttons for selecting severity tiers. When a button is active
-      its colours invert to call attention to the selected filter. Buttons wrap
-      onto new lines on small screens.
-    */
-    .filter-bar {
-      margin: 1rem 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .filter-btn {
-      padding: 0.4rem 0.8rem;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      background-color: transparent;
-      color: var(--brand-ink);
-      border: 1px solid var(--brand-muted);
-      cursor: pointer;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-    .filter-btn.active {
-      background-color: var(--brand-accent);
-      color: var(--brand-primary);
-      border-color: var(--brand-accent);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 2rem;
-      font-size: 0.9rem;
-    }
-    table th, table td {
-      border: 1px solid var(--brand-muted);
-      padding: 0.5rem;
-    }
-    table th {
-      background-color: var(--brand-primary);
-      color: var(--brand-accent);
-      font-weight: 600;
-    }
-    .footer {
-      font-size: 0.75rem;
-      color: var(--brand-muted);
-      text-align: center;
-      padding: 1rem 0;
+    /* Print styles */
+    @media print{
+      body{background:#fff;color:#111}
+      .card{box-shadow:none;border-color:#ddd}
+      .chip,.tools button,.tools select{display:none}
+      .wrap{margin:0;padding:0}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- React root. The interactive dashboard will render here. -->
-    <div id="root"></div>
+  <div class="wrap">
+    <section class="hero">
+      <div class="card pad">
+        <h1>Scene+ App — Issues & User Dissatisfaction</h1>
+        <p class="sub">Weighted by impact on checkout and prevalence in reviews. Toggle by severity or sort by frequency. Ready to print or paste into a deck.</p>
+        <div class="kpis" id="kpis"></div>
+        <div class="tools">
+          <div class="legend">
+            <span class="chip" data-sev="ALL" data-active="true"><span class="dot" style="background:linear-gradient(90deg,var(--sev1),var(--sev2))"></span>All</span>
+            <span class="chip" data-sev="SEV-1"><span class="dot sev1"></span>SEV‑1</span>
+            <span class="chip" data-sev="SEV-2"><span class="dot sev2"></span>SEV‑2</span>
+            <span class="chip" data-sev="SEV-3"><span class="dot sev3"></span>SEV‑3</span>
+            <span class="chip" data-sev="SEV-4"><span class="dot sev4"></span>SEV‑4</span>
+          </div>
+          <select id="sorter" title="Sort">
+            <option value="count">Sort: Highest count</option>
+            <option value="severity">Sort: Severity tiers</option>
+            <option value="alpha">Sort: A→Z</option>
+          </select>
+          <!-- Print/Save button removed -->
+        </div>
+      </div>
+      <div class="card pad sticky">
+        <h3 style="margin:0 0 12px">Mentions by Issue</h3>
+        <div id="barList" class="barcard"></div>
+        <p class="meta" id="barMeta"></p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card pad">
+        <h3 style="margin:0 0 8px">Issue Details</h3>
+        <div id="issues"></div>
+      </div>
+      <div class="card pad">
+        <h3 style="margin:0 0 8px">Data Table</h3>
+        <table class="table" id="table"></table>
+        <p class="foot">SEV‑1 blocks checkout or core use · SEV‑2 high friction/derails value · SEV‑3 hurts trust but non‑blocking · SEV‑4 downstream churn/workarounds</p>
+      </div>
+    </section>
   </div>
-  <!-- Load React and ReactDOM from a CDN. Using the UMD builds avoids the need for a bundler. -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="dashboard.js"></script>
+
+  <script>
+  // === Data (from your corpus; totals = 667 reviews) ===
+  const DATA = {
+    meta: { total_reviews: 667 },
+    issues: [
+      { issue: "Auth friction & failures (re-login/2FA/lockouts)", severity: "SEV-1", count: 132, percent: 19.8, example: "…must relog with code even in store at checkout…" },
+      { issue: "Card/barcode display or scan failures", severity: "SEV-1", count: 98, percent: 14.7, example: "…barcode wouldn’t scan; staff had to key number…" },
+      { issue: "App unavailable/crashes/stuck loading", severity: "SEV-1", count: 60, percent: 9.0, example: "…endless loading/‘temporarily unavailable’ at launch…" },
+      { issue: "Grocery offers require separate site/account (no SSO)", severity: "SEV-2", count: 164, percent: 24.6, example: "…bounced to website to load offers; asks me to sign in again…" },
+      { issue: "Biometrics ignored (Face ID / fingerprint)", severity: "SEV-2", count: 84, percent: 12.6, example: "…Face ID accepted but still prompts for password + code…" },
+      { issue: "Points missing or redemption/gift card failures", severity: "SEV-2", count: 37, percent: 5.5, example: "…redeemed for gift card that never arrived; no points…" },
+      { issue: "Connectivity/compatibility problems", severity: "SEV-2", count: 21, percent: 3.1, example: "…says ‘no internet’; Play Store says not compatible…" },
+      { issue: "Support & communication gaps", severity: "SEV-3", count: 265, percent: 39.7, example: "…contact links broken; long waits; bot replies…" },
+      { issue: "UI/UX flaws (navigation, dark mode, visual polish)", severity: "SEV-3", count: 70, percent: 10.5, example: "…dark mode hides buttons on Samsung; clunky navigation…" },
+      { issue: "Workarounds or churn (Wallet/physical card/switch brands)", severity: "SEV-4", count: 144, percent: 21.6, example: "…switched to PC Optimum / carry physical card…" }
+    ]
+  };
+
+  // === Helpers ===
+  const $ = (sel, el=document) => el.querySelector(sel);
+  const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+  const fmt = new Intl.NumberFormat();
+
+  function sevRank(s){ return ({"SEV-1":1, "SEV-2":2, "SEV-3":3, "SEV-4":4})[s] || 9 }
+  function sevClass(s){ return s.toLowerCase().replace("/","-").replace(" ","-") }
+
+  // === Populate KPIs ===
+  function renderKPIs(){
+    const total = DATA.meta.total_reviews;
+    const topByCount = [...DATA.issues].sort((a,b)=>b.count-a.count)[0];
+    const topSev1 = [...DATA.issues].filter(i=>i.severity==='SEV-1').sort((a,b)=>b.count-a.count)[0];
+    const kpis = `
+      <div class="kpi"><h3>Total reviews analyzed</h3><p>${fmt.format(total)}</p></div>
+      <div class="kpi"><h3>Most mentioned issue</h3><p>${topByCount.issue.split(" (")[0]}</p></div>
+      <div class="kpi"><h3>Top critical blocker</h3><p>${topSev1.issue.split(" (")[0]}</p></div>`;
+    $("#kpis").innerHTML = kpis;
+  }
+
+  // === Bars ===
+  function renderBars(list){
+    const max = Math.max(...list.map(i=>i.count));
+    const frag = document.createDocumentFragment();
+    list.forEach(i=>{
+      const row = document.createElement('div');
+      row.className = 'barrow';
+      const label = document.createElement('div');
+      label.innerHTML = `<div class="label">${i.issue}</div><div class="meta">${i.severity} · ${fmt.format(i.count)} mentions · ${i.percent}%</div>`;
+      const barcell = document.createElement('div');
+      barcell.innerHTML = `<div class="barwrap"><div class="bar" style="width:${(i.count/max*100).toFixed(1)}%"></div></div>`;
+      row.appendChild(label); row.appendChild(barcell);
+      frag.appendChild(row);
+    });
+    const target = $("#barList");
+    target.innerHTML = '';
+    target.appendChild(frag);
+    $("#barMeta").textContent = `Relative scale (max = ${fmt.format(max)} mentions)`;
+  }
+
+  // === Issue Cards ===
+  function renderIssues(list){
+    const wrap = $("#issues");
+    wrap.innerHTML = '';
+    list.forEach(i=>{
+      const bclass = `badge sev-${sevRank(i.severity)}`;
+      const el = document.createElement('div');
+      el.className = 'issue';
+      el.innerHTML = `
+        <div>
+          <h4>${i.issue}</h4>
+          <div class="meta">${i.percent}% of ${fmt.format(DATA.meta.total_reviews)} reviews · ${fmt.format(i.count)} mentions</div>
+          <div class="example">${i.example}</div>
+        </div>
+        <div><span class="badge ${bclass}">${i.severity}</span></div>`;
+      wrap.appendChild(el);
+    })
+  }
+
+  // === Table ===
+  function renderTable(list){
+    const t = $("#table");
+    t.innerHTML = `<thead><tr><th>Severity</th><th>Issue</th><th>Mentions</th><th>% of reviews</th></tr></thead>` +
+      '<tbody>' + list.map(i=>`<tr><td>${i.severity}</td><td>${i.issue}</td><td>${fmt.format(i.count)}</td><td>${i.percent}%</td></tr>`).join('') + '</tbody>';
+  }
+
+  // === State & Controls ===
+  let currentSev = 'ALL';
+  let currentSort = 'count';
+
+  function apply(){
+    let list = DATA.issues.slice();
+    if(currentSev !== 'ALL') list = list.filter(i=>i.severity===currentSev);
+
+    if(currentSort==='count') list.sort((a,b)=>b.count-a.count);
+    if(currentSort==='severity') list.sort((a,b)=>sevRank(a.severity)-sevRank(b.severity) || b.count-a.count);
+    if(currentSort==='alpha') list.sort((a,b)=>a.issue.localeCompare(b.issue));
+
+    renderBars(list);
+    renderIssues(list);
+    renderTable(list);
+  }
+
+  function initControls(){
+    $$(".chip").forEach(ch=>{
+      ch.addEventListener('click',()=>{
+        $$(".chip").forEach(c=>c.dataset.active="false");
+        ch.dataset.active = "true";
+        currentSev = ch.dataset.sev;
+        apply();
+      })
+    })
+    $("#sorter").addEventListener('change', e=>{ currentSort = e.target.value; apply(); })
+    // Removed print/save button event handler
+  }
+
+  // Boot
+  renderKPIs();
+  initControls();
+  apply();
+  </script>
 </body>
 </html>
